@@ -145,7 +145,7 @@ if (filterTags.length > 0 && filterItems.length > 0) {
   });
 }
 
-// Partner Form Submission (Google Apps Script + Local Storage Fallback)
+// Partner Form Submission (Web3Forms / Google Apps Script + Local Storage Fallback)
 const partnerForm = document.getElementById('partnerForm');
 if (partnerForm) {
   const statusDiv = partnerForm.querySelector('#formStatus') || document.getElementById('formStatus');
@@ -168,15 +168,21 @@ if (partnerForm) {
     });
     localStorage.setItem('partnershipSubmissions', JSON.stringify(submissions));
 
-    // Post to Google Apps Script (replace with actual script URL when deployed)
     const scriptURL = 'YOUR_GOOGLE_SCRIPT_URL_HERE';
-    
-    if (scriptURL && !scriptURL.includes('YOUR_GOOGLE_SCRIPT_URL_HERE')) {
-      fetch(scriptURL, { 
-        method: 'POST', 
-        body: formData 
+    const web3formsURL = partnerForm.getAttribute('action');
+    const useWeb3Forms = web3formsURL && web3formsURL.includes('web3forms.com');
+
+    const submitEndpoint = useWeb3Forms
+      ? web3formsURL
+      : (scriptURL && !scriptURL.includes('YOUR_GOOGLE_SCRIPT_URL_HERE') ? scriptURL : null);
+
+    if (submitEndpoint) {
+      fetch(submitEndpoint, {
+        method: 'POST',
+        body: formData
       })
       .then(response => {
+        if (!response.ok) throw new Error(`Submission failed (${response.status})`);
         statusDiv.textContent = "Success! We will contact you soon.";
         statusDiv.className = "form-status success";
         partnerForm.reset();
