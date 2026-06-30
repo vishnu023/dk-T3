@@ -198,7 +198,84 @@ input {
 .hero-photo {
   position: absolute;
   inset: 0 0 0 33%;
-  background: url("assets/hero.jpg") center/cover no-repeat;
+  background-image: url("assets/hero.jpg");
+  background-position: right center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Responsive adjustments: make the face/subject center on smaller viewports */
+@media (max-width: 900px) {
+  .site-header {
+    left: 0;
+    transform: none;
+    width: 100%;
+    padding: 0 18px;
+  }
+
+  /* keep mobile slide-out nav available (JS toggles .open) */
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .hero {
+    height: auto;
+    min-height: 640px;
+    background: none; /* allow photo to show through gradient overlay */
+  }
+
+  .hero:before {
+    background: linear-gradient(180deg, rgba(3,21,43,0.95) 0%, rgba(3,21,43,0.6) 40%, rgba(3,21,43,0.12) 80%);
+  }
+
+  .hero-photo {
+    inset: 0; /* let photo span full width so we can re-position it */
+    background-position: center 35%; /* nudge subject toward visible center */
+  }
+
+  /* For the Swiper slides (used on homepage) ensure the focal point matches */
+  .hero-slider .swiper-slide {
+    background-position: center 35% !important;
+  }
+
+  .hero-content {
+    padding-top: 120px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.9rem, 6.6vw, 3rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 620px;
+  }
+
+  .hero-photo {
+    background-position: center 45%; /* move face closer to vertical center on small phones */
+  }
+
+  /* Swiper-specific override for very small screens */
+  .hero-slider .swiper-slide {
+    background-position: center 45% !important;
+  }
+
+  .hero-content {
+    padding-top: 110px;
+  }
+
+  .hero h1 {
+    font-size: 1.9rem;
+    line-height: 1.08;
+  }
+
+  .hero-copy {
+    font-size: 0.95rem;
+  }
 }
 
 .hero-content {
@@ -1711,6 +1788,17 @@ footer {
   align-items: center;
 }
 
+/* Use an actual image inside the slide so we can control focal point via object-position */
+.hero-slider .hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center; /* desktop default */
+  z-index: 0;
+}
+
 .slider-overlay {
   position: absolute;
   inset: 0;
@@ -1723,6 +1811,19 @@ footer {
   z-index: 2;
   width: 100%;
   padding-top: 86px;
+}
+
+/* Responsive shifts for img focal point */
+@media (max-width: 900px) {
+  .hero-slider .hero-img {
+    object-position: center 35% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-slider .hero-img {
+    object-position: center 45% !important;
+  }
 }
 
 @media (min-width: 761px) {
