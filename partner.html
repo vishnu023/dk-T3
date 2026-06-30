@@ -44,7 +44,14 @@
         <div class="article-body">
           <p class="lead">Dr. C. K. Ashok Kumar works with governments, chambers of commerce, startup incubators, and investors globally to architect high-impact economic corridors and social ventures. To propose a collaboration, please fill out the form below.</p>
           
-          <form id="partnerForm" class="contact-form" style="margin-top: 30px; background: var(--cream); border-color: var(--line); color: var(--ink);">
+          <!-- FUNCTIONAL FORM USING WEB3FORMS -->
+          <form id="partnerForm" action="https://api.web3forms.com/submit" method="POST" class="contact-form" style="margin-top: 30px; background: var(--cream); border-color: var(--line); color: var(--ink);">
+            
+            <!-- Step 1: Replace YOUR_ACCESS_KEY_HERE with your Web3Forms key (See instructions below) -->
+            <input type="hidden" name="access_key" value="7ac22438-2220-4fad-968f-69c9e42bd5cd">
+            <!-- Hidden configuration so submissions go to your email address -->
+            <input type="hidden" name="to_email" value="vishnuvardhan23reddy@gmail.com">
+            
             <div style="margin-bottom: 5px;"><label style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--muted);">Full Name *</label></div>
             <input type="text" name="name" placeholder="Enter your full name" required style="background: #fff; color: var(--ink); border-color: var(--line);">
             
@@ -95,7 +102,7 @@
       <div><h3>Quick links</h3><a href="index.html#top">Home</a><a href="biography.html">About</a><a href="index.html#mission">Mission</a><a href="index.html#impact">Impact</a></div>
       <div><h3>Explore</h3><a href="insights.html">Insights</a><a href="journey.html">Journey</a><a href="contact.html">Contact</a></div>
       <div><h3>Initiatives</h3><span>First World Community</span><span>India–Japan Mission 2030</span><span>Startup Ecosystem</span></div>
-      <div><h3>Contact</h3><a href="mailto:connect@ckashokkumar.com">✉ connect@ckashokkumar.com</a><span>⌕ Chennai, India</span></div>
+      <div><h3>Contact</h3><a href="mailto:vishnuvardhan23reddy@gmail.com">✉ vishnuvardhan23reddy@gmail.com</a><span>⌕ Chennai, India</span></div>
     </div>
     <div class="copyright shell">© 2026 Dr. C. K. Ashok Kumar. All Rights Reserved. <span>Privacy Policy &nbsp; | &nbsp; Terms of Use</span></div>
   </footer>
