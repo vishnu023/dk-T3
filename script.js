@@ -204,7 +204,7 @@ if (partnerForm) {
   });
 }
 
-// Membership Form Submission (Google Apps Script + Local Storage Fallback)
+// Membership Form Submission (Web3Forms + Local Storage Fallback)
 const membershipForm = document.getElementById('membershipForm');
 if (membershipForm) {
   const statusDiv = membershipForm.querySelector('#formStatus') || document.getElementById('formStatus');
@@ -227,15 +227,16 @@ if (membershipForm) {
     });
     localStorage.setItem('membershipSubmissions', JSON.stringify(submissions));
 
-    // Post to Google Apps Script (replace with actual script URL when deployed)
-    const scriptURL = 'YOUR_GOOGLE_SCRIPT_URL_HERE';
-    
-    if (scriptURL && !scriptURL.includes('YOUR_GOOGLE_SCRIPT_URL_HERE')) {
-      fetch(scriptURL, { 
-        method: 'POST', 
-        body: formData 
+    const web3formsURL = membershipForm.getAttribute('action');
+    const submitEndpoint = web3formsURL && web3formsURL.includes('web3forms.com') ? web3formsURL : null;
+
+    if (submitEndpoint) {
+      fetch(submitEndpoint, {
+        method: 'POST',
+        body: formData
       })
       .then(response => {
+        if (!response.ok) throw new Error(`Submission failed (${response.status})`);
         statusDiv.textContent = "Success! Your application has been submitted.";
         statusDiv.className = "form-status success";
         membershipForm.reset();
