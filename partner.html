@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,9 +8,12 @@
   <title>Become a Partner — Dr. C. K. Ashok Kumar</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <header class="site-header scrolled" id="top">
     <a class="brand" href="index.html#top" aria-label="Home">
@@ -17,7 +21,8 @@
       <strong>ASHOK KUMAR</strong>
       <small>Building Bridges. Creating Futures.</small>
     </a>
-    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="menu-toggle" aria-label="Open menu"
+      aria-expanded="false"><span></span><span></span><span></span></button>
     <nav class="nav" aria-label="Main navigation">
       <a href="index.html#top">Home</a>
       <a href="biography.html">About</a>
@@ -40,31 +45,48 @@
 
     <section class="biography-body section">
       <div class="shell article-container">
-        
+
         <div class="article-body">
-          <p class="lead">Dr. C. K. Ashok Kumar works with governments, chambers of commerce, startup incubators, and investors globally to architect high-impact economic corridors and social ventures. To propose a collaboration, please fill out the form below.</p>
-          
+          <p class="lead">Dr. C. K. Ashok Kumar works with governments, chambers of commerce, startup incubators, and
+            investors globally to architect high-impact economic corridors and social ventures. To propose a
+            collaboration, please fill out the form below.</p>
+
           <!-- FUNCTIONAL FORM USING WEB3FORMS -->
-          <form id="partnerForm" action="https://api.web3forms.com/submit" method="POST" class="contact-form" style="margin-top: 30px; background: var(--cream); border-color: var(--line); color: var(--ink);">
-            
+          <form id="partnerForm" action="https://api.web3forms.com/submit" method="POST" class="contact-form"
+            style="margin-top: 30px; background: var(--cream); border-color: var(--line); color: var(--ink);">
+
             <!-- Step 1: Replace YOUR_ACCESS_KEY_HERE with your Web3Forms key (See instructions below) -->
             <input type="hidden" name="access_key" value="b0e1311c-c776-464d-8c51-243b3a1b03f3">
             <!-- Hidden configuration so submissions go to your email address -->
             <input type="hidden" name="to_email" value="vishnuvardhan23reddy@gmail.com">
-            
-            <div style="margin-bottom: 5px;"><label style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--muted);">Full Name *</label></div>
-            <input type="text" name="name" placeholder="Enter your full name" required style="background: #fff; color: var(--ink); border-color: var(--line);">
-            
-            <div style="margin-bottom: 5px; margin-top: 15px;"><label style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--muted);">Email Address *</label></div>
-            <input type="email" name="email" placeholder="Enter your email address" required style="background: #fff; color: var(--ink); border-color: var(--line);">
-            
-            <div style="margin-bottom: 5px; margin-top: 15px;"><label style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--muted);">Company / Organization</label></div>
-            <input type="text" name="organization" placeholder="Your company name" style="background: #fff; color: var(--ink); border-color: var(--line);">
-            
-            <div style="margin-bottom: 5px; margin-top: 15px;"><label style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--muted);">How would you like to collaborate? *</label></div>
-            <textarea name="message" rows="5" placeholder="Provide details on the partnership model, targets, or proposal" required style="background: #fff; color: var(--ink); border-color: var(--line); font-family: inherit;"></textarea>
-            
-            <button type="submit" class="button gold" style="width: 100%; margin-top: 20px;">Submit Partnership Request</button>
+
+            <div style="margin-bottom: 5px;"><label
+                style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--muted);">Full Name
+                *</label></div>
+            <input type="text" name="name" placeholder="Enter your full name" required
+              style="background: #fff; color: var(--ink); border-color: var(--line);">
+
+            <div style="margin-bottom: 5px; margin-top: 15px;"><label
+                style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--muted);">Email
+                Address *</label></div>
+            <input type="email" name="email" placeholder="Enter your email address" required
+              style="background: #fff; color: var(--ink); border-color: var(--line);">
+
+            <div style="margin-bottom: 5px; margin-top: 15px;"><label
+                style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--muted);">Company /
+                Organization</label></div>
+            <input type="text" name="organization" placeholder="Your company name"
+              style="background: #fff; color: var(--ink); border-color: var(--line);">
+
+            <div style="margin-bottom: 5px; margin-top: 15px;"><label
+                style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--muted);">How would
+                you like to collaborate? *</label></div>
+            <textarea name="message" rows="5"
+              placeholder="Provide details on the partnership model, targets, or proposal" required
+              style="background: #fff; color: var(--ink); border-color: var(--line); font-family: inherit;"></textarea>
+
+            <button type="submit" class="button gold" style="width: 100%; margin-top: 20px;">Submit Partnership
+              Request</button>
             <div id="formStatus" class="form-status" style="margin-top: 10px;"></div>
           </form>
         </div>
@@ -98,16 +120,31 @@
 
   <footer>
     <div class="shell footer-grid">
-      <div class="footer-brand"><strong>DR. C. K.<br>ASHOK KUMAR</strong><small>Building Bridges. Creating Futures.</small></div>
-      <div><h3>Quick links</h3><a href="index.html#top">Home</a><a href="biography.html">About</a><a href="index.html#mission">Mission</a><a href="index.html#impact">Impact</a></div>
-      <div><h3>Explore</h3><a href="insights.html">Insights</a><a href="journey.html">Journey</a><a href="contact.html">Contact</a></div>
-      <div><h3>Initiatives</h3><span>First World Community</span><span>India–Japan Mission 2030</span><span>Startup Ecosystem</span></div>
-      <div><h3>Contact</h3><a href="mailto:vishnuvardhan23reddy@gmail.com">✉ vishnuvardhan23reddy@gmail.com</a><span>⌕ Chennai, India</span></div>
+      <div class="footer-brand"><strong>DR. C. K.<br>ASHOK KUMAR</strong><small>Building Bridges. Creating
+          Futures.</small></div>
+      <div>
+        <h3>Quick links</h3><a href="index.html#top">Home</a><a href="biography.html">About</a><a
+          href="index.html#mission">Mission</a><a href="index.html#impact">Impact</a>
+      </div>
+      <div>
+        <h3>Explore</h3><a href="insights.html">Insights</a><a href="journey.html">Journey</a><a
+          href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h3>Initiatives</h3><span>First World Community</span><span>India–Japan Mission 2030</span><span>Startup
+          Ecosystem</span>
+      </div>
+      <div>
+        <h3>Contact</h3><a href="mailto:connect@ckashokkumar.com">✉ connect@ckashokkumar.com</a><span>⌕ Chennai,
+          India</span>
+      </div>
     </div>
-    <div class="copyright shell">© 2026 Dr. C. K. Ashok Kumar. All Rights Reserved. <span>Privacy Policy &nbsp; | &nbsp; Terms of Use</span></div>
+    <div class="copyright shell">© 2026 Dr. C. K. Ashok Kumar. All Rights Reserved. <span>Privacy Policy &nbsp; | &nbsp;
+        Terms of Use</span></div>
   </footer>
 
   <script src="script.js"></script>
   <button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
 </body>
+
 </html>
