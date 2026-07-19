@@ -19,6 +19,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 96px;
 }
 
 body {
@@ -128,6 +129,13 @@ input {
   font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
+  transition: gap 0.3s ease;
+}
+
+@media (max-width: 1120px) {
+  .nav {
+    gap: 15px;
+  }
 }
 
 .nav a {
@@ -730,7 +738,7 @@ input {
   grid-template-columns: repeat(3, 1fr);
 }
 
-blockquote {
+.quotes blockquote {
   margin: 0;
   padding: 0 34px;
   border-right: 1px solid rgba(255, 255, 255, 0.25);
@@ -738,18 +746,18 @@ blockquote {
   color: var(--gold);
 }
 
-blockquote:last-child {
+.quotes blockquote:last-child {
   border: 0;
 }
 
-blockquote p {
+.quotes blockquote p {
   font-size: 0.75rem;
   line-height: 1.5;
   color: #fff;
   margin: -7px 0 10px;
 }
 
-blockquote cite {
+.quotes blockquote cite {
   font-size: 0.62rem;
   font-style: normal;
 }
@@ -1083,7 +1091,9 @@ footer {
   }
   .hero,
   .hero-slider {
-    height: 570px;
+    height: auto;
+    min-height: 580px;
+    max-height: none;
   }
   .hero-photo {
     left: 30%;
@@ -1132,18 +1142,20 @@ footer {
   .hero,
   .hero-slider {
     height: auto;
-    min-height: 720px;
+    min-height: 560px;
+    max-height: none;
   }
   .hero-photo,
   .hero-slider .swiper-slide {
     left: 0;
-    opacity: 0.54;
+    opacity: 0.60;
     background-position: 58% center;
   }
   .hero:before,
   .slider-overlay {
-    background: linear-gradient(90deg, rgba(0, 17, 37, 0.94), rgba(0, 17, 37, 0.53)),
-      linear-gradient(0deg, rgba(0, 17, 37, 0.88) 0%, transparent 60%);
+    background:
+      linear-gradient(to bottom, rgba(0, 10, 25, 0.55) 0%, rgba(0, 10, 25, 0.20) 60%),
+      rgba(0, 10, 25, 0.55);
   }
   .hero-content,
   .hero-slider .hero-content {
@@ -1194,7 +1206,7 @@ footer {
   .quote-grid {
     grid-template-columns: 1fr;
   }
-  blockquote {
+  .quotes blockquote {
     border-right: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     padding: 22px 8px;
@@ -1768,7 +1780,9 @@ footer {
    Hero Slider (Swiper.js Integration)
    ========================================================================== */
 .hero-slider {
-  height: 610px;
+  height: 100vh;
+  min-height: 560px;
+  max-height: 820px;
   position: relative;
   overflow: hidden;
 }
@@ -1785,7 +1799,8 @@ footer {
   background-repeat: no-repeat;
   color: #fff;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* Use an actual image inside the slide so we can control focal point via object-position */
@@ -1795,14 +1810,27 @@ footer {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: right center; /* desktop default */
+  object-position: 62% center; /* frames face center-right, UN emblem behind */
   z-index: 0;
 }
 
 .slider-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(0, 18, 40, 0.98) 0%, rgba(0, 18, 40, 0.84) 45%, rgba(0, 18, 40, 0.18) 75%);
+  /*
+   * Matches drckashokkumar.me reference exactly:
+   * - Very dark navy on far left  (text sits here)
+   * - Smooth fade through center
+   * - Light 15% tint on right     (photo clearly visible, no hard edge)
+   */
+  background: linear-gradient(
+    to right,
+    rgba(0, 12, 28, 0.97) 0%,
+    rgba(0, 12, 28, 0.88) 28%,
+    rgba(0, 12, 28, 0.52) 48%,
+    rgba(0, 12, 28, 0.22) 65%,
+    rgba(0, 12, 28, 0.15) 100%
+  );
   z-index: 1;
 }
 
@@ -1810,8 +1838,10 @@ footer {
   position: relative;
   z-index: 2;
   width: 100%;
-  padding-top: 86px;
+  padding-top: 100px;
+  padding-bottom: 60px;
 }
+
 
 /* Responsive shifts for img focal point */
 @media (max-width: 900px) {
@@ -1833,6 +1863,12 @@ footer {
 }
 
 /* Custom Swiper Controls */
+.hero-slider .swiper-pagination {
+  bottom: 20px !important;
+  top: auto !important;
+  z-index: 10;
+}
+
 .hero-slider .swiper-pagination-bullet {
   background: rgba(255, 255, 255, 0.5);
   opacity: 1;
@@ -1842,8 +1878,10 @@ footer {
 
 .hero-slider .swiper-pagination-bullet-active {
   background: var(--gold) !important;
-  width: 12px;
-  height: 12px;
+  width: 28px;
+  height: 10px;
+  border-radius: 5px;
+  transition: width 0.3s ease;
 }
 
 .hero-slider .swiper-button-next,
@@ -1996,7 +2034,8 @@ footer {
 @media (max-width: 760px) {
   .hero-slider {
     height: auto;
-    min-height: 720px;
+    min-height: 560px;
+    max-height: none;
   }
   .hero-slider .swiper-slide {
     background-position: 58% center;
@@ -2013,7 +2052,7 @@ footer {
 
 @media (max-width: 520px) {
   .hero-slider {
-    min-height: 690px;
+    min-height: 520px;
   }
   .hero-slider .hero-content {
     padding-top: 130px;
@@ -2300,3 +2339,296 @@ footer {
   }
 }
 
+/* ==========================================================================
+   COMPREHENSIVE RESPONSIVE OVERHAUL
+   Desktop → Laptop → Tablet → Mobile
+   ========================================================================== */
+
+/* ── Body overflow guard (prevents horizontal scroll on any device) ─────── */
+html, body {
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ── Fluid typography base ──────────────────────────────────────────────── */
+:root {
+  --fs-h1:    clamp(1.9rem, 5vw, 4rem);
+  --fs-h2:    clamp(1.5rem, 3.5vw, 2.2rem);
+  --fs-h3:    clamp(1rem,   2.2vw, 1.3rem);
+  --fs-body:  clamp(0.82rem, 1.5vw, 1rem);
+  --fs-small: clamp(0.7rem,  1.2vw, 0.85rem);
+}
+
+/* ── Desktop 1280px ─────────────────────────────────────────────────────── */
+@media (min-width: 1280px) {
+  .shell { width: min(1160px, calc(100% - 60px)); }
+
+  .hero-slider h1,
+  .hero-slider .hero-slider h1 { font-size: var(--fs-h1); }
+
+  .about { gap: 60px; }
+  .about img { height: 400px; }
+
+  .mission-grid { grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  .metrics-grid { grid-template-columns: repeat(4, 1fr); }
+  .footer-grid  { grid-template-columns: 1.4fr repeat(4, 1fr); }
+}
+
+/* ── Laptop 1024px ──────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .nav { gap: 18px; font-size: 0.65rem; }
+
+  .hero-slider { height: 92vh; min-height: 520px; }
+
+  .hero-slider h1 { font-size: clamp(1.9rem, 4.5vw, 3.2rem); }
+
+  .about { grid-template-columns: 1fr 1.2fr; gap: 40px; }
+  .about img { height: 320px; }
+
+  .mission-grid { grid-template-columns: repeat(2, 1fr); }
+  .join-grid    { grid-template-columns: 1fr 1.3fr; }
+  .join-grid > div:last-child { grid-column: 1 / -1; }
+
+  .footer-grid  { grid-template-columns: 1.3fr repeat(2, 1fr); gap: 24px; }
+  .footer-grid > div:last-child { grid-column: 2; }
+}
+
+/* ── Tablet 768px ───────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Shell */
+  .shell { width: calc(100% - 32px); }
+
+  /* Header */
+  .site-header {
+    width: 100%;
+    left: 0;
+    transform: none;
+    padding: 0 18px;
+    height: 68px;
+  }
+  .site-header.scrolled { height: 58px; border-radius: 0; }
+  .menu-toggle { display: block; z-index: 110; }
+
+  /* Mobile nav drawer */
+  .nav {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(300px, 82vw);
+    height: 100dvh;
+    background: #06182d;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 90px 28px 40px;
+    transform: translateX(100%);
+    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -8px 0 40px rgba(0,0,0,0.35);
+    overflow-y: auto;
+  }
+  .nav.open { transform: translateX(0); right: 0; }
+  .nav a {
+    font-size: 0.88rem;
+    width: 100%;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .nav a:last-child { border: none; }
+  .nav .nav-cta {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Hero slider */
+  .hero-slider {
+    height: auto;
+    min-height: 100svh;
+  }
+  .hero-slider .hero-img { object-position: 60% center; }
+  .hero-slider .hero-content {
+    padding-top: 110px;
+    padding-bottom: 80px;
+    padding-inline: 20px;
+  }
+  .hero-slider h1 { font-size: clamp(1.75rem, 7vw, 2.8rem); max-width: 100%; }
+  .hero-role, .hero-copy { font-size: 0.85rem; }
+  .actions { flex-direction: column; gap: 10px; }
+  .actions .button { width: 100%; justify-content: center; }
+
+  /* Trust */
+  .trust-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .trust-grid div:nth-child(3) { border-right: 0; }
+  .trust-grid b { font-size: 1.5rem; }
+  .trust-grid span { font-size: 0.6rem; }
+
+  /* About */
+  .about {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 40px 0;
+  }
+  .about img { height: 280px; border-radius: 10px; }
+  .about h2 { font-size: var(--fs-h2); }
+
+  /* Metrics */
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .metrics-grid div { padding: 16px 12px; }
+  .metrics-grid div:nth-child(2) { border-right: 0; }
+  .metrics strong { font-size: 1.6rem; }
+
+  /* Mission */
+  .mission-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .mission article { min-height: auto; padding: 20px 16px; }
+
+  /* Feature */
+  .feature { grid-template-columns: 1fr; }
+  .feature-image { min-height: 260px; }
+  .feature-copy { padding: 32px 24px; }
+  .feature h2 { font-size: var(--fs-h2); }
+
+  /* Vision */
+  .vision { grid-template-columns: 1fr; gap: 24px; }
+  .vision img { height: 220px; }
+
+  /* Quotes */
+  .quote-grid { grid-template-columns: 1fr; }
+  .quotes blockquote { border-right: 0; border-bottom: 1px solid rgba(255,255,255,0.15); padding: 20px 4px; }
+  .quotes blockquote:last-child { border-bottom: 0; }
+
+  /* Join */
+  .join-grid { grid-template-columns: 1fr; gap: 24px; }
+  .join-grid > div:last-child { grid-column: auto; }
+  .join h2 { font-size: var(--fs-h2); }
+  .join .button { font-size: 0.7rem; padding: 12px 16px; }
+  .join form { flex-direction: column; gap: 8px; }
+  .join input { border-radius: 4px; }
+  .join form button { border-radius: 4px; padding: 12px 20px; width: 100%; }
+
+  /* Footer */
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .footer-brand { grid-column: 1 / -1; }
+  .footer-grid h3 { font-size: 0.7rem; }
+  .footer-grid a, .footer-grid span { font-size: 0.65rem; }
+  .copyright { flex-direction: column; gap: 6px; font-size: 0.58rem; }
+
+  /* Article layouts (biography, contact, partner, membership) */
+  .article-container {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    padding-inline: 0;
+  }
+  .article-sidebar {
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .archive-hero { padding-top: 120px; padding-bottom: 36px; }
+  .archive-hero h1 { font-size: clamp(1.6rem, 6vw, 2.4rem); }
+
+  /* Insights grid */
+  .insights-archive-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+  /* Journey */
+  .journey-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .journey-card-image-wrapper { height: 160px; }
+
+  /* Back to top */
+  .back-to-top { width: 42px; height: 42px; font-size: 1.1rem; bottom: 18px; right: 16px; }
+}
+
+/* ── Mobile 480px ───────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .brand strong { font-size: 1.1rem; }
+  .brand span   { font-size: 0.7rem; }
+  .brand small  { font-size: 0.5rem; }
+
+  /* Hero */
+  .hero-slider { min-height: 100svh; }
+  .hero-slider h1 { font-size: clamp(1.6rem, 8.5vw, 2.2rem); line-height: 1.15; }
+  .hero-slider .hero-content { padding-top: 95px; }
+  .eyebrow.light { font-size: 0.65rem; }
+
+  /* Trust: 2 cols */
+  .trust-grid { grid-template-columns: repeat(2, 1fr); }
+  .trust-grid div { justify-content: flex-start; padding: 8px 6px; border: 0; border-bottom: 1px solid var(--line); }
+  .trust-grid div:nth-last-child(-n+2) { border-bottom: 0; }
+
+  /* Metrics: 2 cols tight */
+  .metrics-grid { grid-template-columns: 1fr 1fr; gap: 0; }
+  .metrics-grid div { border: 0; border-bottom: 1px solid rgba(255,255,255,0.12); padding: 18px 10px; }
+  .metrics-grid div:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.12); }
+  .metrics strong { font-size: 1.45rem; }
+  .metrics i { font-size: 1.3rem; }
+  .metrics span { font-size: 0.62rem; }
+
+  /* Mission: 1 col */
+  .mission-grid { grid-template-columns: 1fr; gap: 12px; }
+  .mission article { min-height: auto; }
+  .mission h2 { font-size: var(--fs-h2); }
+
+  /* Feature */
+  .feature-image { min-height: 220px; }
+  .feature h2 { font-size: 1.45rem; }
+  .feature-copy { padding: 24px 18px; }
+
+  /* Vision */
+  .vision img { height: 200px; }
+
+  /* Insights: 1 col */
+  .insights-archive-grid { grid-template-columns: 1fr; }
+  .insights-archive-grid img { height: 180px; }
+
+  /* Journey: 1 col */
+  .journey-grid { grid-template-columns: 1fr; }
+  .journey-card-image-wrapper { height: 200px; }
+  .archive-filters { gap: 8px; }
+  .filter-tag { font-size: 0.65rem; padding: 6px 12px; }
+
+  /* Read Next */
+  .read-next-grid { grid-template-columns: 1fr; }
+
+  /* Footer: 1 col stacked */
+  .footer-grid { grid-template-columns: 1fr; }
+
+  /* Contact form */
+  .contact-form { padding: 18px 14px; }
+
+  /* Timeline */
+  .timeline { padding-left: 0; border-left: 0; }
+  .timeline-item { padding-top: 36px; }
+  .timeline-badge { left: 0; top: 0; }
+
+  /* Speaking box */
+  .speaking-box { padding: 20px 16px; }
+  .speaking-box h3 { font-size: 1.15rem; }
+}
+
+/* ── Small phone 375px ─────────────────────────────────────────────────── */
+@media (max-width: 375px) {
+  .hero-slider h1 { font-size: 1.5rem; }
+  .shell { width: calc(100% - 24px); }
+  .nav { width: 88vw; padding: 80px 20px 30px; }
+  .mission h2, .about h2 { font-size: 1.4rem; }
+  .join h2 { font-size: 1.3rem; }
+  .button { font-size: 0.68rem; padding: 11px 16px; }
+}
+
+/* ── Touch targets & accessibility ─────────────────────────────────────── */
+@media (hover: none) and (pointer: coarse) {
+  .button { min-height: 48px; }
+  .nav a  { min-height: 44px; display: flex; align-items: center; }
+  .filter-tag { min-height: 44px; }
+  .social-link-btn { width: 44px; height: 44px; }
+  .gallery img { cursor: default; }
+}
+
+/* ── Reduce motion ──────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
